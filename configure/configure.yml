@@ -1,0 +1,38 @@
+- name: ====== CONFIGURE SNMP ======
+  hosts: client
+  gather_facts: yes
+  become: yes
+#  vars_prompt:
+
+#    - name: serv
+#      prompt: Service
+#      private: false
+#    - name: state_serv
+#      prompt: started/stopped
+#      private: false
+#    - name: condition
+#      prompt: yes/false
+#      private: false
+  tasks:
+    - name: Update Configuration
+      lineinfile:
+        path: /etc/snmp/snmpd.conf
+        regexp: '^sysContact'
+        line: 'sysContact     Me <wildan@example.org>'
+        create: yes
+    - name: Add Line to Config
+      lineinfile:
+        path: /etc/snmp/snmpd.conf
+        line: 'rocommunity P3g4d414n_RO'
+        insertafter: 'rocommunity6 public default -V systemonly'
+    - name: Restart SNMP after Update
+      service:
+        name: snmpd
+        state: restarted
+#    - name: Debug
+#      debug:
+#        msg:
+#          - " Service Check Target       : {{ ansible_hostname }} : {{ inventory_hostname }}  "
+#          - " Time                       : {{ ansible_date_time.date }} {{ ansible_date_time.hour}}:{{ansible_date_time.minute}}"
+#          - " Debug                      : {{ log.stdout }} "
+

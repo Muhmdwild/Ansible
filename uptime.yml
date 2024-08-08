@@ -1,0 +1,5 @@
+- name: uptime
+  hosts: all
+  become: true
+  vars:
+    - file_service: "output/tmp/check-{{ ansible_host

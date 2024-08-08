@@ -1,0 +1,1 @@
+{"msg": ["==========================", "Waktu Mulai Monitoring: 2024-06-19 09:52", "==========================", "CPU USAGE : 5.9%", "RAM USAGE : %", "DISK SPACE USAGE : 57%%", "System 10.0.2.6 has gateway 10.0.2.1"], "failed": false, "changed": false}

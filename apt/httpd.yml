@@ -1,0 +1,29 @@
+##HTTPD INSTALL##
+- name: ====== HTTPD INSTALL ======
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks:
+   # - name: Pkg Update
+   #   apt:
+   #     name: '*'
+   #     state: latest
+    - name: Install HTTPD
+      apt:
+        name: apache2
+        state: latest
+        update_cache: yes
+    - name: Start Service HTTPD
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+    - name: Check Status Service
+      shell: systemctl status apache2 | grep 'Active' |tr -d '\t '
+      register: log
+    - name: Debug
+      debug:
+        msg:
+          - " Service Check Target       : {{ ansible_hostname }} : {{ inventory_hostname }}  "
+          - " Time                       : {{ ansible_date_time.date }} {{ ansible_date_time.hour}}:{{ansible_date_time.minute}}"
+          - " Debug                      : {{log.stdout}} "

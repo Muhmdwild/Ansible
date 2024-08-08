@@ -1,0 +1,17 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Date
+      debug:
+        msg:
+             - "=========================="
+             - "DATE: {{ ansible_date_time.date }} {{ ansible_date_time.hour }}:{{ ansible_date_time.minute }}"
+             - "=========================="
+    - name: STOP NGINX DOCKer CONTAINEr
+      docker_container:
+        name: nginx
+        state: stopped
+    - name: DELETE NGINX DOCKer CONTAINEr
+      docker_container:
+        name: nginx
+        state: absent

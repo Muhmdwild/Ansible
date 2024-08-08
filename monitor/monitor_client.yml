@@ -1,0 +1,65 @@
+##RESOURCE MONITOR##
+- name: ====== LINUX CLIENT MONITORING ======
+  hosts: all
+  gather_facts: yes
+  vars:
+    - file_check: "output/check-{{ ansible_hostname }}.csv"
+    - dest: "/home/wildan8/ansible_remote/"
+    - src: "output/."
+  tasks:
+    - name: Report Directory
+      file:
+        path: output/
+        state: directory
+        mode: 0777
+    - shell: rm -rf output/*.txt
+
+    - name: CPU Usage
+      shell: top -bn1 | grep 'Cpu(s)' | awk '{print $2}'
+      register: cpu_usage
+#    - name: RAM Usage
+#      shell: top -bn1 | awk '/MiB mem/ {printf "%.2f\n", $8/$4 * 100}'
+#      register: ram_usage
+    - name: Gather Disk Space
+      shell: "df -h --output=pcent / | awk 'NR==2 {print $1}'"
+      register: disk_space
+    - name: Date
+      debug:
+        msg:
+             - "=========================="
+             - "Waktu Mulai Monitoring: {{ ansible_date_time.date }} {{ ansible_date_time.hour }}:{{ ansible_date_time.minute }}"
+             - "=========================="
+             - "CPU USAGE : {{ cpu_usage.stdout }} %"
+             - "RAM USAGE : {{ ansible_memory_mb.real.used }} GB"
+             - "DISK SPACE USAGE : {{ disk_space.stdout }} %"
+             - "System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}"
+      register: date_msg
+    - name: convert output to string
+      delegate_to: localhost
+      set_fact:
+        date_msg_string: "{{ date_msg | to_nice_json }}"
+    - name: Usage Stats
+      copy:
+        content: "{{ date_msg_string }}"
+        dest: "{{ file_check }}"
+      register: output_file
+      delegate_to: localhost
+#    - name: Send to Remote Host
+#      copy:
+#        src: "{{ src }}"
+#        dest: "{{ dest }}"
+#        mode: 0644
+- name:
+  hosts: inventory
+  gather_facts: yes
+  vars:
+    - file_check: "output/check-{{ ansible_hostname }}.csv"
+    - dest: "/home/wildan8/ansible_remote/"
+    - src: "output/."
+  tasks:
+    - name: Send to Remote Host
+      copy:
+        src: "{{ src }}"
+        dest: "{{ dest }}"
+        mode: 0644
+

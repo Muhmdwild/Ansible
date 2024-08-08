@@ -1,0 +1,42 @@
+##CHANGE PASSWORD USER#
+- name: =========== Change User Password ==================
+  hosts: all
+  gather_facts: yes
+  become: true
+  vars:
+    - user_name: test
+    - user_password: test2
+    - file_check: "change/change-{{ ansible_hostname }}.txt"
+  tasks:
+    - name: Report Directory
+      file:
+        path: change/
+        state: directory
+        mode: 0777
+    - shell: rm -rf change/*.txt
+    - name: Change Password for User "{{ user_name }}"
+      user:
+        name: "{{ user_name }}"
+        password: "{{ user_password | password_hash('sha512') }}"
+        state: present
+      register: pw_change
+    - name: Write Output
+      delegate_to: localhost
+      debug:
+        msg:
+          - "Destination          : {{ ansible_hostname }} : {{ inventory_hostname }}"
+          - "======================================================"
+          - "Waktu Pembuatan User : {{ ansible_date_time.date }} {{ ansible_date_time.hour }}:{{ ansible_date_time.minute }} "
+          - "======================================================"
+          - "Debug                : {{ pw_change }}"
+      register: output_log
+    - name: convert to JSON
+      delegate_to: localhost
+      set_fact:
+        output_log_string: "{{ output_log | to_nice_json }}"
+    - name: Copy Output to File Log
+      become: false
+      delegate_to: localhost
+      copy:
+        content: "{{ output_log_string }}"
+        dest: "{{ file_check }}"

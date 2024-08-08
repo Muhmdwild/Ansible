@@ -1,0 +1,10 @@
+{
+    "changed": false,
+    "failed": false,
+    "msg": [
+        " Service Check Target       : wildan6 : 10.0.2.6  ",
+        " Time                       : 2024-07-11 09:08",
+        " Debug                      : ",
+        "nano /etc/ssh/sshd_config"
+    ]
+}

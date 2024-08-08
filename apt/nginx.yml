@@ -1,0 +1,31 @@
+##HTTPD INSTALL##
+- name: ====== NGINX INSTALL ======
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks:
+   # - name: Pkg Update
+   #   apt:
+   #     name: '*'
+   #     state: latest
+    - name: Install NGINX
+      apt:
+        name: nginx
+        state: latest
+        update_cache: yes
+    - name: Start Service NGINX
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+    - name: Check Status Service
+      shell: systemctl status nginx | grep 'Active' |tr -d '\t '
+      register: log
+    - name: Debug
+      debug:
+        msg:
+          - " Service Check Target       : {{ ansible_hostname }} : {{ inventory_hostname }}  "
+          - " Time                       : {{ ansible_date_time.date }} {{ ansible_date_time.hour}}:{{ansible_date_time.minute}}"
+          - " Debug                      : {{log.stdout}} "
+
+

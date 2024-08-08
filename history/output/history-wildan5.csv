@@ -1,0 +1,15 @@
+{
+    "changed": false,
+    "failed": false,
+    "msg": [
+        " Check History Target       : wildan5 : 10.0.2.5  ",
+        " Time                       : 2024-07-23 10:51",
+        " Debug                      : ",
+        [
+            "apt install openssh-server openssh-client",
+            "apt update",
+            "apt install openssh-server openssh-client",
+            "apt upgrade"
+        ]
+    ]
+}

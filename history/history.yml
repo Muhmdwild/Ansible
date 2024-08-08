@@ -1,0 +1,40 @@
+##HISTORY COMMAND##
+- name: ====== CHECK HISTORY COMMAND '{{grep}}' EACH CLIENT  ======
+  hosts: all
+  gather_facts: yes
+  become: yes
+  vars_prompt:
+    - name: grep
+      prompt: Grep
+      private: false
+  vars:
+    - file: "output/history-{{ansible_hostname}}.csv"
+  tasks:
+    - name: Report Directory
+      file:
+        path: output/
+        state: directory
+        mode: 077
+    - shell: rm -rf output/*.txt
+    - name: Check History '{{grep}}'
+      shell: cat ~/.bash_history | grep '{{grep}}'
+      register: log
+    - name: Debug
+      debug:
+        msg:
+          - " Check History Target       : {{ ansible_hostname }} : {{ inventory_hostname }}  "
+          - " Time                       : {{ ansible_date_time.date }} {{ ansible_date_time.hour}}:{{ansible_date_time.minute}}"
+          - " Debug                      : "
+          - "{{log.stdout_lines}}"
+      register: log_output
+    - name: Convert Output to String
+      delegate_to: localhost
+      set_fact:
+        log_output_string: "{{ log_output | to_nice_json }}"
+    - name: Output
+      copy:
+        content: "{{ log_output_string }}"
+        dest: "{{ file }}"
+      delegate_to: localhost
+      become: false
+

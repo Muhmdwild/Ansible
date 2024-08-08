@@ -1,0 +1,49 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: INSTALL DOCKER ENGINE
+      apt:
+        name: docker.io
+        state: present
+      register: install_dock
+    - name: START DOCKER CLI
+      apt:
+        name: docker-compose
+        state: present
+      register: compose_dock
+    - name: START DOCKER SERVICE
+      service:
+        name: docker
+        state: started
+        enabled: true
+      register: start_dock
+    - name: PULL NGINX DOCKER IMAGES
+      docker_image:
+        name: nginx
+        source: pull
+      register: pull_dock
+    - name: CREATE VOLUME
+      docker_volume:
+        name: nginx-data
+        driver: local
+      register: create_vol
+    - name: RUN NGINX DOCKer CONTAINEr
+      docker_container:
+        name: nginx
+        image: nginx
+        state: started
+        ports:
+           - "80:80"
+      register: run_cont
+    - name: Date
+      debug:
+        msg:
+             - "========================================================"
+             - "Waktu Mulai Instalasi: {{ ansible_date_time.date }} {{ ansible_date_time.hour }}:{{ ansible_date_time.minute }}"
+             - "========================================================"
+             - "INSTALL DOCKER   : {{ install_dock }} "
+             - "START DOCKER CLI : {{ compose_dock }}"
+             - "START SERVICE    : {{ start_dock }}"
+             - "PULL NGINX       : {{ pull_dock }}"
+             - "CREATE VOLUME    : {{ create_vol }}"
+             - "RUN CONTAINER    : {{ run_cont }}"

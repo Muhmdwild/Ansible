@@ -1,0 +1,40 @@
+- name: ====== LINUX CLIENT MONITORING ======
+  hosts: all
+  gather_facts: yes
+  vars:
+    - file_check:"output/check-{{ ansible_hostname }}.txt"
+  tasks:
+
+    - name: CPU Usage
+      shell: top -bn1 | grep 'Cpu(s)' | awk '{print $2}'
+      register: cpu_usage
+    - name: RAM Usage
+      shell: top -bn1 | awk '/MiB mem/ {printf "%.2f\n", $8/$4 * 100}'
+      register: ram_usage
+    - name: Gather Disk Space
+      shell: "df -h --output=pcent / | awk 'NR==2 {print $1}'"
+      register: disk_space
+    - name: Usage Stats
+      delegate_to: localhost
+      debug:
+        msg:
+            - "=========================="
+            - "Waktu Mulai Monitoring: {{ ansible_date_time.date }} {{ ansible_date_time.hour }}:{{ ansible_date_time.minute }}"
+            - "=========================="
+            - "CPU USAGE : {{ cpu_usage.stdout }}%"
+            - "RAM USAGE : {{ ram_usage.stdout }}%"
+            - "DISK SPACE USAGE : {{ disk_space.stdout }}%"
+            - "System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}"
+      register: output_file 
+    - name: convert output to string
+      delegate_to: localhost
+      set_fact:
+        output_file_string: "{{ output_file | to_nice_json }}"
+    - name: Output To Log
+      copy:
+        content: "{{ output_file_string }}"
+        dest: output/log.txt
+      delegate_to: localhost
+    - name: download file
+      fetch:
+        src: "{{ item }}"

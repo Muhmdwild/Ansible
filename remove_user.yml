@@ -1,0 +1,14 @@
+- name: Delete User
+  hosts: all
+  become: true
+  vars:
+    - user_name: test
+    - user_password: test
+  tasks:
+    - name: Delete User
+      user:
+        name: "{{ user_name }}"
+        password: "{{user_password}}"
+        state: absent
+        remove: yes
+      register: user_create

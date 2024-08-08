@@ -1,0 +1,13 @@
+{
+    "changed": false,
+    "failed": false,
+    "msg": [
+        " Check History Target       : wildan8 : 10.0.2.8  ",
+        " Time                       : 2024-07-23 10:51",
+        " Debug                      : ",
+        [
+            "apt-get update",
+            "apt update"
+        ]
+    ]
+}

@@ -1,0 +1,26 @@
+##HTTPD INSTALL##
+- name: ====== NGINX STOP SERVICE ======
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks:
+   # - name: Pkg Update
+   #   apt:
+   #     name: '*'
+   #     state: latest
+    - name: Stop Service NGINX
+      service:
+        name: nginx
+        state: stopped
+        enabled: no
+    - name: Check Status Service
+      shell: systemctl status nginx | grep 'Active' |tr -d '\t '
+      register: log
+    - name: Debug
+      debug:
+        msg:
+          - " Service Check Target       : {{ ansible_hostname }} : {{ inventory_hostname }}  "
+          - " Time                       : {{ ansible_date_time.date }} {{ ansible_date_time.hour}}:{{ansible_date_time.minute}}"
+          - " Debug                      : {{log.stdout}} "
+
+

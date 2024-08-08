@@ -1,0 +1,39 @@
+##CHECK USER EXPIRE DATE#
+- name: =========== Create User With EXPIRES DATE and Output to Log File ==================
+  hosts: all
+  gather_facts: yes
+  become: true
+  vars:
+    - user_name: test
+    - user_password: test
+    - file_check: "exp/check-exp-{{ ansible_hostname }}.txt"
+  tasks:
+    - name: Report Directory
+      file:
+        path: exp/
+        state: directory
+        mode: 0777
+    - shell: rm -rf exp/*.txt
+    - name: Check Account Expire Each Client
+      shell: chage -l "{{ user_name }}" | grep 'Account expires' | tr -d '\t'
+      register: check_exp
+    - name: Write Output
+      delegate_to: localhost
+      debug:
+        msg:
+          - "==================================================================="
+          - "Destination            : {{ ansible_hostname }} : {{ inventory_hostname }}"
+          - "==================================================================="
+          - "Waktu Pengecekan User  : {{ ansible_date_time.date }} {{ ansible_date_time.hour }}:{{ ansible_date_time.minute }} "
+          - "Debug                  : {{ user_name }} {{ check_exp.stdout }}"
+      register: output_log
+    - name: convert to JSON
+      delegate_to: localhost
+      set_fact:
+        output_log_string: "{{ output_log | to_nice_json }}"
+    - name: Copy Output to File Log
+      become: false
+      delegate_to: localhost
+      copy:
+        content: "{{ output_log_string }}"
+        dest: "{{ file_check }}"

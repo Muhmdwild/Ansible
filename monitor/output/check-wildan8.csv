@@ -1,0 +1,13 @@
+{
+    "changed": false,
+    "failed": false,
+    "msg": [
+        "==========================",
+        "Waktu Mulai Monitoring: 2024-07-15 10:57",
+        "==========================",
+        "CPU USAGE : 18.8 %",
+        "RAM USAGE : 1442 GB",
+        "DISK SPACE USAGE : 64% %",
+        "System 10.0.2.8 has gateway 10.0.2.1"
+    ]
+}

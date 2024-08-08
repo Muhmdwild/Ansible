@@ -1,0 +1,10 @@
+{
+    "changed": false,
+    "failed": false,
+    "msg": [
+        " Service Check Target       : wildan5 : 10.0.2.5  ",
+        " Time                       : 2024-07-11 09:07",
+        " Debug                      : ",
+        "nano /etc/netplan/01-network-manager-all.yaml nano /etc/passwdnano /etc/passwdnano /etc/passwdnano /etc/ssh/sshd_confighistory | grep 'nano'grep 'nano' | ~/.history_bashgrep 'nano' | ~/.bash_historysudo grep 'nano' | ~/.bash_history"
+    ]
+}

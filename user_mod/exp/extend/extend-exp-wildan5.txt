@@ -1,0 +1,11 @@
+{
+    "changed": false,
+    "failed": false,
+    "msg": [
+        "Destination          : wildan5 : 10.0.2.5",
+        "======================================================",
+        "Waktu Pembuatan User : 2024-06-25 14:43 ",
+        "======================================================",
+        "Debug                : {'name': 'test', 'state': 'present', 'append': False, 'move_home': False, 'password': 'NOT_LOGGING_PASSWORD', 'changed': True, 'uid': 1001, 'group': 1001, 'comment': '', 'home': '/home/test', 'shell': '/bin/sh', 'failed': False}"
+    ]
+}

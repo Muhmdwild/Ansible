@@ -1,0 +1,7 @@
+- "=========================="
+- "Waktu Mulai Monitoring: 2024-06-19 11:47"
+- "=========================="
+- "CPU USAGE : 5.9 %"
+- "RAM USAGE : 1359 GB"
+- "DISK SPACE USAGE : 60% %"
+- "System 10.0.2.5 has gateway 10.0.2.1"

@@ -1,0 +1,11 @@
+{
+    "changed": false,
+    "failed": false,
+    "msg": [
+        "Destination            : wildan8 : 10.0.2.8 ",
+        "======================================================",
+        "Waktu Penghapusan User : 2024-07-05 10:26 ",
+        "======================================================",
+        "Debug                  : {'name': 'test', 'state': 'absent', 'force': False, 'remove': True, 'changed': True, 'stderr': 'userdel: test mail spool (/var/mail/test) not found\\n', 'stderr_lines': ['userdel: test mail spool (/var/mail/test) not found'], 'failed': False}"
+    ]
+}

@@ -1,0 +1,47 @@
+##POSTGRESQL INSTALL##
+- name: ====== OPEN/CLOSE PORT FIREWALL '{{port_number}}'/'{{proto}}'  ======
+  hosts: all
+  gather_facts: yes
+  become: yes
+  vars_prompt:
+
+    - name: port_number
+      prompt: Number Port
+      private: false
+    - name: proto
+      prompt: tcp/udp
+      private: false
+    - name: state
+      prompt: allow/deny
+      private: false
+  tasks:
+    - name: Install UFW #Check UFW 
+      apt:
+        name: ufw
+        state: latest
+#    - name: Enable via Shell
+#      shell: ufw enable
+    - name: Enable UFW
+      service:
+        name: ufw
+        state: started
+        enabled: yes
+    - name:
+      ufw:
+        state: enabled
+    - name: Open Port '{{port_number}}':'{{proto}}'
+      ufw:
+        rule: '{{state}}'
+        port: '{{port_number}}'
+        proto: '{{proto}}'
+#    - name: Check Status Service
+#      shell: systemctl status postgresql | grep 'Active' | tr -d '\t '
+#      register: log
+#    - name: Debug
+#      debug:
+#        msg:
+#          - " Service Check Target       : {{ ansible_hostname }} : {{ inventory_hostname }}  "
+#          - " Time                       : {{ ansible_date_time.date }} {{ ansible_date_time.hour}}:{{ansible_date_time.minute}}"
+#          - " Debug                      : {{log.stdout}} "
+
+

@@ -1,0 +1,37 @@
+##CHECK USER EXPIRE DATE#
+- name: =========== Check Port ACTIVE Remote Host ==================
+  hosts: all
+  gather_facts: yes
+  become: true
+  vars:
+    - file_check: "port/check-port-{{ ansible_hostname }}.txt"
+  tasks:
+    - name: Report Directory
+      file:
+        path: exp/
+        state: directory
+        mode: 0777
+    - shell: rm -rf port/*.txt
+    - name: Check Port Active Each Client
+      shell: ufw status numbered #| tr -d '\n '
+      register: check_port
+    - name: Write Output
+      delegate_to: localhost
+      debug:
+        msg:
+          - "==================================================================="
+          - "Destination            : {{ ansible_hostname }} : {{ inventory_hostname }}"
+          - "==================================================================="
+          - "Waktu Pengecekan Port  : {{ ansible_date_time.date }} {{ ansible_date_time.hour }}:{{ ansible_date_time.minute }} "
+          - "{{ check_port.stdout_lines }}"
+      register: output_log
+    - name: convert to JSON
+      delegate_to: localhost
+      set_fact:
+        output_log_string: "{{ output_log | to_nice_json }}"
+    - name: Copy Output to File Log
+      become: false
+      delegate_to: localhost
+      copy:
+        content: "{{ output_log_string }}"
+        dest: "{{ file_check }}"

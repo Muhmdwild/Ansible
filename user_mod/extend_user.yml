@@ -1,0 +1,46 @@
+##EXTEND USER EXPIRES DATE#
+- name: =========== Extend User With EXPIRES DATE and Output to Log File ==================
+  hosts: all
+  gather_facts: yes
+  become: true
+  vars:
+    - user_name: test
+    - user_password: test
+    - file_check: "exp/extend/extend-exp-{{ ansible_hostname }}.txt"
+  tasks:
+    - name: Report Directory
+      file:
+        path: exp/
+        state: directory
+        mode: 0777
+    - shell: rm -rf exp/*.txt
+    - name: Create User
+      user:
+        name: "{{ user_name }}"
+        password: "{{ user_password | password_hash('sha512') }}"
+        state: present
+#srftime : mengambil data dengan format string to create formated date
+        expires: "{{ '%s' | strftime( (ansible_date_time.epoch | int) + (86400 * 30) ) }}" #tambah hari 
+      register: user_create
+#    - name: Set UP Expires Date for User
+#      shell: chage -E 2024-06-26 "{{ user_name }}"
+    - name: Write Output
+      delegate_to: localhost
+      debug:
+        msg:
+          - "Destination          : {{ ansible_hostname }} : {{ inventory_hostname }}"
+          - "======================================================"
+          - "Waktu Pembuatan User : {{ ansible_date_time.date }} {{ ansible_date_time.hour }}:{{ ansible_date_time.minute }} "
+          - "======================================================"
+          - "Debug                : {{ user_create }}"
+      register: output_log
+    - name: convert to JSON
+      delegate_to: localhost
+      set_fact:
+        output_log_string: "{{ output_log | to_nice_json }}"
+    - name: Copy Output to File Log
+      become: false
+      delegate_to: localhost
+      copy:
+        content: "{{ output_log_string }}"
+        dest: "{{ file_check }}"

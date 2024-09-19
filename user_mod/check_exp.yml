@@ -1,11 +1,11 @@
 ##CHECK USER EXPIRE DATE#
 - name: =========== Create User With EXPIRES DATE and Output to Log File ==================
-  hosts: all
+  hosts: PGD-JKT
   gather_facts: yes
   become: true
   vars:
-    - user_name: test
-    - user_password: test
+    - user_name: developer01
+    - user_password: ITdev01
     - file_check: "exp/check-exp-{{ ansible_hostname }}.txt"
   tasks:
     - name: Report Directory

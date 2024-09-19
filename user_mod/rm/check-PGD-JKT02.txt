@@ -1,0 +1,11 @@
+{
+    "changed": false,
+    "failed": false,
+    "msg": [
+        "Destination            : PGD-JKT02 : 10.0.2.6 ",
+        "======================================================",
+        "Waktu Penghapusan User : 2024-09-13 10:52 ",
+        "======================================================",
+        "Debug                  : {'name': 'developer01', 'state': 'absent', 'force': False, 'remove': True, 'changed': True, 'stderr': 'userdel: developer01 mail spool (/var/mail/developer01) not found\\n', 'stderr_lines': ['userdel: developer01 mail spool (/var/mail/developer01) not found'], 'failed': False}"
+    ]
+}

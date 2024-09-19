@@ -1,5 +1,5 @@
 - name: ====== CONFIGURE SNMP ======
-  hosts: PGD-SBY
+  hosts: client-1
   gather_facts: yes
   become: yes
 #  vars_prompt:
@@ -17,18 +17,17 @@
     - name: Update Configuration
       lineinfile:
         path: /etc/snmp/snmpd.conf
-        regexp: '^sysContact'
-        line: 'sysContact     Me <pegadaian@.org>'
-        create: yes
-    - name: Add Line to Config
-      lineinfile:
-        path: /etc/snmp/snmpd.conf
-        line: 'rocommunity PGD_RO'
-        insertbefore: '# Views'
-    - name: Restart SNMP after Update
-      service:
-        name: snmpd
-        state: restarted
+        regexp: 'rocommunity P3g4d414n_RO'
+        state: absent
+#    - name: Add Line to Config
+#      lineinfile:
+#        path: /etc/snmp/snmpd.conf
+#        line: 'rocommunity P3g4d414n_RO'
+#        insertafter: '#   arguments viewname included [oid]'
+#    - name: Restart SNMP after Update
+#      service:
+#        name: snmpd
+#        state: restarted
 #    - name: Debug
 #      debug:
 #        msg:

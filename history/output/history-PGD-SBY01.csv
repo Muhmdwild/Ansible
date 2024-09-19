@@ -1,0 +1,15 @@
+{
+    "changed": false,
+    "failed": false,
+    "msg": [
+        " Check History Target       : PGD-SBY01 : 10.0.2.7  ",
+        " Time                       : 2024-09-16 15:22",
+        " Debug                      : ",
+        [
+            "apt install openssh-server openssh-client",
+            "apt update",
+            "apt upgrade ",
+            "apt update"
+        ]
+    ]
+}

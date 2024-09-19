@@ -1,6 +1,6 @@
 ##POSTGRESQL INSTALL##
 - name: ====== OPEN/CLOSE PORT FIREWALL '{{port_number}}'/'{{proto}}'  ======
-  hosts: all
+  hosts: PGD-SBY
   gather_facts: yes
   become: yes
   vars_prompt:

@@ -2,11 +2,13 @@
     "changed": false,
     "failed": false,
     "msg": [
-        " Check History Target       : wildan8 : 10.0.2.8  ",
+        " Check History Target       : wildan7 : 10.0.2.7  ",
         " Time                       : 2024-09-16 15:10",
         " Debug                      : ",
         [
-            "apt-get update",
+            "apt install openssh-server openssh-client",
+            "apt update",
+            "apt upgrade ",
             "apt update"
         ]
     ]

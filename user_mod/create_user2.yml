@@ -1,11 +1,11 @@
 ##CREATE USER#
 - name: =========== Create User With Output to Log File ==================
-  hosts: all
+  hosts: PGD-JKT
   gather_facts: yes
   become: true
   vars:
-    - user_name: test
-    - user_password: test
+    - user_name: developer01
+    - user_password: dev01
     - file_check: "create/check-{{ ansible_hostname }}.txt"
   tasks:
     - name: Report Directory

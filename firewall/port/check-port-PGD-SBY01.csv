@@ -1,0 +1,22 @@
+{
+    "changed": false,
+    "failed": false,
+    "msg": [
+        "===================================================================",
+        "Destination            : PGD-SBY01 : 10.0.2.7",
+        "===================================================================",
+        "Waktu Pengecekan Port  : 2024-09-14 15:13 ",
+        [
+            "Status: active",
+            "",
+            "     To                         Action      From",
+            "     --                         ------      ----",
+            "[ 1] 161/udp                    DENY IN     Anywhere                  ",
+            "[ 2] 22/tcp                     ALLOW IN    Anywhere                  ",
+            "[ 3] 8000:9000/udp              ALLOW IN    Anywhere                  ",
+            "[ 4] 161/udp (v6)               DENY IN     Anywhere (v6)             ",
+            "[ 5] 22/tcp (v6)                ALLOW IN    Anywhere (v6)             ",
+            "[ 6] 8000:9000/udp (v6)         ALLOW IN    Anywhere (v6)             "
+        ]
+    ]
+}

@@ -1,11 +1,11 @@
 ##EXTEND USER EXPIRES DATE#
 - name: =========== Extend User With EXPIRES DATE and Output to Log File ==================
-  hosts: all
+  hosts: PGD-JKT
   gather_facts: yes
   become: true
   vars:
-    - user_name: test
-    - user_password: test
+    - user_name: developer01
+    - user_password: ITdev01
     - file_check: "exp/extend/extend-exp-{{ ansible_hostname }}.txt"
   tasks:
     - name: Report Directory

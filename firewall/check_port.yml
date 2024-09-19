@@ -1,10 +1,10 @@
 ##CHECK USER EXPIRE DATE#
 - name: =========== Check Port ACTIVE Remote Host ==================
-  hosts: all
+  hosts: PGD-SBY
   gather_facts: yes
   become: true
   vars:
-    - file_check: "port/check-port-{{ ansible_hostname }}.txt"
+    - file_check: "port/check-port-{{ ansible_hostname }}.csv"
   tasks:
     - name: Report Directory
       file:

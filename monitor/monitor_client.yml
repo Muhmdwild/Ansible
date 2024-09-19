@@ -1,6 +1,6 @@
 ##RESOURCE MONITOR##
 - name: ====== LINUX CLIENT MONITORING ======
-  hosts: all
+  hosts: PGD-JKT
   gather_facts: yes
   vars:
     - file_check: "output/check-{{ ansible_hostname }}.csv"

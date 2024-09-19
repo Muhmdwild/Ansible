@@ -2,9 +2,9 @@
     "changed": false,
     "failed": false,
     "msg": [
-        "Destination          : wildan6 : 10.0.2.6",
+        "Destination          : PGD-JKT02 : 10.0.2.6",
         "======================================================",
-        "Waktu Pembuatan User : 2024-09-13 10:40 ",
+        "Waktu Pembuatan User : 2024-09-13 10:58 ",
         "======================================================",
         "Debug                : {'name': 'developer01', 'state': 'present', 'system': False, 'create_home': True, 'password': 'NOT_LOGGING_PASSWORD', 'changed': True, 'uid': 1002, 'group': 1002, 'comment': '', 'home': '/home/developer01', 'shell': '/bin/sh', 'failed': False}"
     ]

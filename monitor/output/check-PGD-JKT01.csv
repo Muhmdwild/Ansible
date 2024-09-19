@@ -3,11 +3,11 @@
     "failed": false,
     "msg": [
         "==========================",
-        "Waktu Mulai Monitoring: 2024-09-08 20:40",
+        "Waktu Mulai Monitoring: 2024-09-14 13:49",
         "==========================",
-        "CPU USAGE : 5.9 %",
-        "RAM USAGE : 1465 GB",
+        "CPU USAGE : 18.8 %",
+        "RAM USAGE : 1199 GB",
         "DISK SPACE USAGE : 63% %",
-        "System 10.0.2.8 has gateway 10.0.2.1"
+        "System 10.0.2.5 has gateway 10.0.2.1"
     ]
 }

@@ -2,8 +2,8 @@
     "changed": false,
     "failed": false,
     "msg": [
-        " Check History Target       : wildan8 : 10.0.2.8  ",
-        " Time                       : 2024-09-16 15:10",
+        " Check History Target       : PGD-SBY02 : 10.0.2.8  ",
+        " Time                       : 2024-09-16 15:22",
         " Debug                      : ",
         [
             "apt-get update",

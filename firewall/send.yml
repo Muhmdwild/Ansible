@@ -1,0 +1,13 @@
+x- name:
+  hosts: PGD-SBY
+  gather_facts: yes
+  vars:
+    - dest: "/home/{{ansible_hostname}}/send/"
+    - src: "port/."
+  tasks:
+    - name: Send to Remote Host
+      copy:
+        src: "{{ src }}"
+        dest: "{{ dest }}"
+        mode: 0644
+

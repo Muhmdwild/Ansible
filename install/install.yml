@@ -1,11 +1,14 @@
-- name: ====== START/STOP/STATUS SERVICE '{{serv}}' ======
-  hosts: PGD-JKT
+- name: ====== INSTALL/UNINSTALL '{{serv}}' ======
+  hosts: PGD-SBY
   gather_facts: yes
   become: yes
   vars_prompt:
 
     - name: serv
       prompt: Service
+      private: false
+    - name: ins
+      prompt: latest/absent
       private: false
     - name: state_serv
       prompt: started/stopped
@@ -14,10 +17,10 @@
       prompt: yes/false
       private: false
   tasks:
-    - name: Install '{{serv}}'
+    - name: Install/Uninstall '{{serv}}'
       apt:
         name: '{{serv}}'
-        state: latest
+        state: '{{ins}}'
     - name: Service for '{{state_serv}}' '{{serv}}'
       service:
         name: '{{serv}}'

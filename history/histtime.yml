@@ -1,6 +1,6 @@
 ##HISTORY COMMAND##
 - name: ====== CHECK HISTORY COMMAND '{{grep}}' EACH CLIENT  ======
-  hosts: PGD-SBY
+  hosts: all
   gather_facts: yes
   become: yes
   vars_prompt:
@@ -10,6 +10,16 @@
   vars:
     - file: "output/history-{{ansible_hostname}}.csv"
   tasks:
+# Export HISTTIME
+# - shell: export HISTTIMEFORMAT='%F %T %t'
+    - name: Add Line HISTTIMEFORMAT
+      lineinfile:
+        path: /root/.bashrc
+        insertafter: EOF
+        line: 'export HISTTIMEFORMAT="%F %T"'
+        create: yes
+#    - name: Source .bashrc to apply HISTTIMEFORMAT
+#      shell: source /root/.bashrc && history
     - name: Report Directory
       file:
         path: output/
@@ -17,7 +27,8 @@
         mode: 077
     - shell: rm -rf output/*.txt
     - name: Check History '{{grep}}'
-      shell: cat ~/.bash_history | grep '{{grep}}'
+#      shell: 'export HISTTIME="%F %T " && history'
+      shell: grep '{{grep}}' ~/.bash_history
       register: log
     - name: Debug
       debug:

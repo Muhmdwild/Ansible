@@ -1,0 +1,26 @@
+{
+    "changed": false,
+    "failed": false,
+    "msg": [
+        "===================================================================",
+        "Destination            : wildan6 : 10.0.2.6",
+        "===================================================================",
+        "Waktu Pengecekan Port  : 2024-08-26 08:33 ",
+        [
+            "Status: active",
+            "",
+            "     To                         Action      From",
+            "     --                         ------      ----",
+            "[ 1] 22/tcp                     ALLOW IN    Anywhere                  ",
+            "[ 2] 161/udp                    DENY IN     Anywhere                  ",
+            "[ 3] 443/tcp                    DENY IN     Anywhere                  ",
+            "[ 4] 162/udp                    DENY IN     Anywhere                  ",
+            "[ 5] 8000:9000/tcp              DENY IN     Anywhere                  ",
+            "[ 6] 22/tcp (v6)                ALLOW IN    Anywhere (v6)             ",
+            "[ 7] 161/udp (v6)               DENY IN     Anywhere (v6)             ",
+            "[ 8] 443/tcp (v6)               DENY IN     Anywhere (v6)             ",
+            "[ 9] 162/udp (v6)               DENY IN     Anywhere (v6)             ",
+            "[10] 8000:9000/tcp (v6)         DENY IN     Anywhere (v6)             "
+        ]
+    ]
+}

@@ -4,8 +4,8 @@
   gather_facts: yes
   become: true
   vars:
-    - user_name: test
-    - user_password: test2
+    - user_name: developer01
+    - user_password: ITdev01
     - file_check: "change/change-{{ ansible_hostname }}.txt"
   tasks:
     - name: Report Directory

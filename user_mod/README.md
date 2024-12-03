@@ -7,7 +7,7 @@ Pada bagian ini, saya mempelajari cara menggunakan Ansible untuk mengelola pengg
 
 Playbook `create_user2.yml` digunakan untuk membuat pengguna baru di sistem.
 
-- **File**: `[create_user2.yml](%create_user2.yml)`
+- **File**: [create_user2.yml](%create_user2.yml)
 - **Deskripsi**: Membuat pengguna baru dengan parameter yang dapat disesuaikan seperti nama pengguna dan grup.
 
 ## Reset Password

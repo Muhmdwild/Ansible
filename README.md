@@ -4,7 +4,7 @@ Selamat datang di repositori proyek magang saya! Proyek ini berfokus pada pembel
 
 ## Daftar Isi
 
-1. [User](%Ansible/tree/main/user_mod)
+1. [User](/user_mod)
 2. [Service](#service)
 3. [Health Check](#monitor)
 4. [Install](#apt)

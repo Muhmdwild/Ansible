@@ -2,16 +2,6 @@
 
 Pada bagian ini, saya mempelajari cara menggunakan Ansible untuk mengelola pengguna di sistem. Ini mencakup pembuatan, penghapusan, dan modifikasi pengguna serta pengaturan hak akses.
 
-# User Management with Ansible
-
-Proyek ini berfokus pada manajemen pengguna menggunakan Ansible. Berikut adalah tugas-tugas yang dapat dilakukan dengan playbook yang tersedia di repositori ini:
-
-## Daftar Isi
-
-1. [Pembuatan Pengguna](#pembuatan-pengguna)
-2. [Reset Kata Sandi](#reset-kata-sandi)
-3. [Pembuatan Pengguna dengan Durasi Kedaluwarsa](#pembuatan-pengguna-dengan-durasi-kedaluwarsa)
-4. [Perpanjangan Masa Aktif Pengguna](#perpanjangan-masa-aktif-pengguna)
 
 ## Create User
 

@@ -21,10 +21,14 @@ Playbook `reset_passwd.yml` digunakan untuk mereset kata sandi pengguna.
 
 Playbook `create_expires2.yml` digunakan untuk membuat pengguna baru dengan masa aktif tertentu.
 
+![image](https://github.com/user-attachments/assets/0bf4aba8-a584-4665-b47f-fba5cdb1eea3)
+
 - **File**: [create_expires2.yml](%create_expires2.yml)
 - **Deskripsi**: Membuat pengguna baru dengan tanggal kedaluwarsa yang ditentukan, setelah itu akun akan dinonaktifkan.
 
 ## Extend User Expired
+
+![image](https://github.com/user-attachments/assets/e5f4d0c5-db4a-404c-8012-1d06ce735a0c)
 
 Playbook `extend_user2.yml` digunakan untuk memperpanjang masa aktif pengguna yang sudah ada.
 
